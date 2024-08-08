@@ -56,7 +56,7 @@ Configurei as URL's do CRUD no endpoint */product/*, logo temos:
 - GET /product/ -> lista todos os produtos
 - GET /product/id/ -> retorna apenas o produto identificado
 - POST /product/ -> cria um produto
-- PUT /product/id -> atualiza os dados do produto identificado
+- PUT /product/id/ -> atualiza os dados do produto identificado
 - DELETE /product/id -> deleta o produto identificado
 
 Afim de garantir a qualidade e integridade da estrutura do Back-End eu criei os testes unitários para cada endpoint do CRUD. Os testes podem ser encontrados dentro do arquivo *api/tests/test_product_crud.py*.

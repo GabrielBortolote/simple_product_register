@@ -1,0 +1,35 @@
+version: '2.28.1'
+
+services:
+
+app:
+  build: ./backend
+  container_name: app
+  command: python manage.py migrate && python manage.py runserver 0.0.0.0:8000
+  ports: "8000:8000"
+  env_file: ".env"
+  depends_on:
+      db:
+        condition: service_healthy
+
+db:
+  image: postgres
+  container_name: postgres
+  restart: always
+  env_file: .env
+  shm_size: 128mb
+  ports: "5432:5432"
+  volumes:
+    - type: tmpfs
+      target: /dev/shm
+      tmpfs:
+        size: 134217728 # 128*2^20 bytes = 128Mb
+  healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "my_db"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s  
+
+volumes:
+  db_data:
