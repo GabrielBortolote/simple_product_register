@@ -39,3 +39,24 @@ Olá recrutadores e equipe, é um prazer conhecê-los e fazer parte deste proces
 - No servidor DB-Server deve ser instalado o banco de dados dos sistemas.
 - O Banco de Dados deve ser **PostgreSQL**.
 - Crie um README.md com instruções para instalação e inicialização dos sistemas em modo  desenvolvimento, ou seja, na máquina local.
+
+## Solução
+
+### Arquitetura Back-End
+
+O Back-end foi implementado usando a linguagem Python, o framework Django Rest Framework. Usei uma estrutura simples contendo duas pastas.
+
+1. A pasta **base** funcionará como um aplicativo django, contendo os arquivos que relacionam lógica e persistência: *models.py, views.py e serializers.py*;
+2. A pasta **api** conterá configurações da API usando o Django Rest Framework (DRF), assim como os testes relacionados a API.
+
+Dentro do app **base** eu defini o modelo *Product* contendo os atributos necessários: *name, value e description*. No arquivo *serializer.py* defini um serializer padrão usando uma classe pré-definida do DRF (a ModelSerializer). E por fim dentro do arquivo *views.py* defini uma CBV (Class-Based View), também usando uma classe pré-definida do DRF (a ModelViewSet). Essa combinação apesar de simples é muito poderosa, basta apenas configurar as URL's para que o CRUD do modelo Product já esteja funcionando.
+
+Configurei as URL's do CRUD no endpoint */product/*, logo temos:
+
+- GET /product/ -> lista todos os produtos
+- GET /product/id/ -> retorna apenas o produto identificado
+- POST /product/ -> cria um produto
+- PUT /product/id -> atualiza os dados do produto identificado
+- DELETE /product/id -> deleta o produto identificado
+
+Afim de garantir a qualidade e integridade da estrutura do Back-End eu criei os testes unitários para cada endpoint do CRUD. Os testes podem ser encontrados dentro do arquivo *api/tests/test_product_crud.py*.
