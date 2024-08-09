@@ -18,7 +18,7 @@ export default function Products({needUpdate, setNeedUpdate}){
   return <ul>
     {products ? products.map((product, index) => (
       <li key={index}>
-        <Product data={product} />
+        <Product data={product} setNeedUpdate={setNeedUpdate}/>
       </li>
     )) : 'Loading...'}
   </ul>

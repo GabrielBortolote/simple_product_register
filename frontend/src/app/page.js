@@ -21,8 +21,8 @@ export default function Home() {
     }
 
     createProduct(product).then(result => {
-      setNeedUpdate(true)
-      setShowCreateForm(false)
+      setNeedUpdate(true);
+      setShowCreateForm(false);
     })
   }
 
