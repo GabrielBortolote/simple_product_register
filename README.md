@@ -60,3 +60,34 @@ Configurei as URL's do CRUD no endpoint */product/*, logo temos:
 - DELETE /product/id -> deleta o produto identificado
 
 Afim de garantir a qualidade e integridade da estrutura do Back-End eu criei os testes unitários para cada endpoint do CRUD. Os testes podem ser encontrados dentro do arquivo *api/tests/test_product_crud.py*.
+
+### Infraestrutura
+
+## Como rodar?
+
+Para rodar essa aplicação basta possuir o **docker** instalado no ambiente. Da mesma forma o módulo **compose** deve estar instalado no docker, para que seja possível executar o comando **docker compose**.
+
+Para executar a aplicação basta abrir um terminal na pasta raiz do projeto e executar:
+
+```bash
+docker compose up --build
+```
+
+Todos os serviços serão levantados e estarão rodando através do docker. Uma vez executado esse comando, em outro terminal é possível executar os testes do serviço backend:
+
+```bash
+docker exec app python manage.py test
+```
+
+O seguinte output deve ser exibido:
+
+```bash
+Creating test database for alias 'default'...
+Found 5 test(s).
+System check identified no issues (0 silenced).
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.022s
+
+OK
+```
