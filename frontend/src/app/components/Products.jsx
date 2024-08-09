@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import Product from "./Product";
+import { fetchProducts } from "../adapters/APIAdapter";
 
-export default function Products(){ 
+export default function Products({needUpdate, setNeedUpdate}){ 
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
@@ -11,8 +12,8 @@ export default function Products(){
     fetchProducts().then(result => {
       setProducts(result);
     });
-    return () => {};
-  }, []);
+    return () => {setNeedUpdate(false)};
+  }, [needUpdate]);
 
   return <ul>
     {products ? products.map((product, index) => (
@@ -21,20 +22,4 @@ export default function Products(){
       </li>
     )) : 'Loading...'}
   </ul>
-}
-
-async function fetchProducts(){
-  try {
-    const response = await fetch('http://localhost:8000/product/');
-    
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
 }
