@@ -44,24 +44,34 @@ Olá recrutadores e equipe, é um prazer conhecê-los e fazer parte deste proces
 
 ### Arquitetura Back-End
 
-O Back-end foi implementado usando a linguagem Python, o framework Django Rest Framework. Usei uma estrutura simples contendo duas pastas.
+O Back-end foi implementado usando a linguagem Python e o DRF (Django Rest Framework). Usei uma estrutura simples contendo duas pastas.
 
-1. A pasta **base** funcionará como um aplicativo django, contendo os arquivos que relacionam lógica e persistência: *models.py, views.py e serializers.py*;
-2. A pasta **api** conterá configurações da API usando o Django Rest Framework (DRF), assim como os testes relacionados a API.
+1. A pasta **base** funcionará como um aplicativo Django nativo, contendo os arquivos que relacionam lógica e persistência: *models.py, views.py e serializers.py*;
+2. A pasta **api** conterá configurações da API usando o DRF, assim como os testes relacionados a API.
 
 Dentro do app **base** eu defini o modelo *Product* contendo os atributos necessários: *name, value e description*. No arquivo *serializer.py* defini um serializer padrão usando uma classe pré-definida do DRF (a ModelSerializer). E por fim dentro do arquivo *views.py* defini uma CBV (Class-Based View), também usando uma classe pré-definida do DRF (a ModelViewSet). Essa combinação apesar de simples é muito poderosa, basta apenas configurar as URL's para que o CRUD do modelo Product já esteja funcionando.
 
 Configurei as URL's do CRUD no endpoint */product/*, logo temos:
 
-- GET /product/ -> lista todos os produtos
-- GET /product/id/ -> retorna apenas o produto identificado
-- POST /product/ -> cria um produto
-- PUT /product/id/ -> atualiza os dados do produto identificado
-- DELETE /product/id -> deleta o produto identificado
+- **GET** /product/ -> lista todos os produtos
+- **GET** /product/id/ -> retorna apenas o produto identificado
+- **POST** /product/ -> cria um produto
+- **PUT** /product/id/ -> atualiza os dados do produto identificado
+- **DELETE** /product/id/ -> deleta o produto identificado.
 
-Afim de garantir a qualidade e integridade da estrutura do Back-End eu criei os testes unitários para cada endpoint do CRUD. Os testes podem ser encontrados dentro do arquivo *api/tests/test_product_crud.py*.
+Afim de garantir a qualidade e integridade da estrutura do back-end eu criei os testes unitários para cada endpoint do CRUD. Os testes podem ser encontrados dentro do arquivo *api/tests/test_product_crud.py*.
+
+### Arquitetura Front-End
+
+Para o front-end eu escolhi usar **ReactJS** sendo servido com o **NextJS**.
 
 ### Infraestrutura
+
+A infraestrutura da aplicação foi feita usando 3 docker containers, como sugerido, eis aqui os seus nomes e funções:
+
+- **db**: o container de persistência da aplicação. Ele executa um serviço *postgresql* e esta conectado com o sistema backend;
+- **api**: o servidor back-end, contendo a aplicação **Django** implementando a API que se comunicará com a aplicação;
+- **app**: o servidor front-end, contendo uma aplicação **NextJs** implementando a aplicação que será acessada pelo usuário.
 
 ## Como rodar?
 
@@ -91,3 +101,5 @@ Ran 5 tests in 0.022s
 
 OK
 ```
+
+É possível também fazer testes manuais usando o navegador, o postman ou qualquer outra maneira de realizar requests na máquina local, através do endereço [localhost:8000](localhost:8000).

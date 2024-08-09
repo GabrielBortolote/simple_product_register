@@ -1,15 +1,19 @@
 services:
 
   app:
-    build: ./backend
+    build: ./frontend
     container_name: app
-    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    depends_on: api
+
+  api:
+    build: ./backend
+    container_name: api
     ports:
       - "8000:8000"
     env_file: ".env"
     depends_on:
-        db:
-          condition: service_healthy
+      db:
+        condition: service_healthy
     links:
       - db
 
