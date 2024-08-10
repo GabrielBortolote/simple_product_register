@@ -3,6 +3,7 @@
 import React, {useState} from "react";
 import Products from "./components/Products";
 import { createProduct } from "./adapters/APIAdapter";
+import SideBar from "./components/SideBar";
 
 export default function Home() {
   const [showCreateForm, setShowCreateForm] = useState(false);
@@ -27,7 +28,8 @@ export default function Home() {
   }
 
   return<>
-    <div>
+    <div className='w-screen h-screen flex'>
+      <SideBar />
       <h1 className="text-2xl font-bold pb-8">
         Produtos
       </h1>
