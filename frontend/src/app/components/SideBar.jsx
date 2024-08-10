@@ -5,7 +5,7 @@ export default function SideBar(){
     flex flex-col
     w-1/4 h-full
     bg-bnexGreen
-    p-12
+    p-8
     text-bnexDarkBlue
   ">
     <h1 className="
