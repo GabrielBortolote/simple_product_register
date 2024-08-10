@@ -24,19 +24,16 @@ export default function Main(){
     p-8
     overflow-scroll
   ">
-    <h1 className="text-4xl font-poppins text-bnexDarkBlue pb-8">
+    <h1 className="text-4xl font-poppins text-bnexBlue font-bold pb-8">
       Produtos
     </h1>
-
-    <AddProduct setNeedUpdate={setNeedUpdate}/>
-
-    {needUpdate ? <>Creating...</> : <></>}
-
-    <ul>
+    <ul className="
+      flex
+      flex-wrap
+    ">
+      <AddProduct setNeedUpdate={setNeedUpdate}/>
       {products ? products.map((product, index) => (
-        <li key={index}>
-          <Product data={product} setNeedUpdate={setNeedUpdate}/>
-        </li>
+        <Product key={index} data={product} setNeedUpdate={setNeedUpdate}/>
       )) : 'Loading...'}
     </ul>
   </div>

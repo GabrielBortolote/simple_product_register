@@ -2,8 +2,13 @@
 
 import React, {useState} from "react";
 import { updateProduct, deleteProduct } from "../adapters/APIAdapter";
+import UpdateProduct, {productCardClasses} from "./UpdateProduct";
 
-export default function Product({data, setNeedUpdate}){
+const descriptionMaxSize = 140;
+
+
+
+export default function Product({key, data, setNeedUpdate}){
   const [editing, setEditing] = useState(false);
 
   function toogleEditing(){
@@ -29,24 +34,53 @@ export default function Product({data, setNeedUpdate}){
     })
   }
 
-  return <div className="
-    mb-3
-    border-white
-    border-2
-  ">
-    {editing ? <>
-      <form action={sendFormData}>
-        <input type="text" name="name" placeholder="Insira o nome" defaultValue={data.name}/>
-        <input type="number" name="value" placeholder="Insira o valor" defaultValue={data.value}/>
-        <textarea name="description" placeholder="Insira a descrição" defaultValue={data.description}/>   
-        <input type="submit" value="editar" />
-      </form>
-    </> : <>
-      <p>Nome: {data.name}</p>
-      <p>Valor: {data.value}</p>
-      <p>Descrição: {data.description}</p>
-      <button onClick={toogleEditing}>Edit</button>
-      <button onClick={sendDelete}>Delete</button>
-    </>}
-  </div>
+  return <>
+  
+  {
+    editing ?
+    <UpdateProduct action={sendFormData} data={data} /> :
+    <li className={`
+      ${productCardClasses}
+      text-white text-sm 
+      border-bnexBlue
+     hover:border-bnexDarkBlue
+    `}>
+      {/* description */}
+      <p className={`
+        flex-grow
+        text-[14px]
+        my-2
+        ${
+          data.description.length > descriptionMaxSize ?
+          "overflow-y-scroll pr-2" : ""
+        }
+      `}>
+        {data.description}
+      </p>
+
+      {/* name */}
+      <p className="
+        text-lg font-bold
+      ">
+        {data.name}
+      </p>
+
+      {/* value */}
+      <p className="text-lg">
+        <span className="mr-1">R$</span>{data.value}
+      </p>
+      
+      {/* action buttons */}
+      <div className="
+        text-bnexDarkBlue
+        absolute
+        top-0 right-0
+        -translate-y-full
+      ">
+        <button onClick={toogleEditing} className="mr-1 hover:font-bold">Editar</button>|
+        <button onClick={sendDelete} className="ml-1 hover:font-bold">Deletar</button>
+      </div>
+    </li>
+  }
+  </>
 }

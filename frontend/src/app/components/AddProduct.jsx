@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { createProduct } from "../adapters/APIAdapter";
+import UpdateProduct, {productCardClasses} from "./UpdateProduct";
 
 export default function AddProduct({setNeedUpdate}){
   const [showForm, setShowForm] = useState(false);
@@ -20,29 +21,21 @@ export default function AddProduct({setNeedUpdate}){
     })
   }
 
-  return <form action={sendFormData} className="
-    w-[200px] h-[250px]
-    border-dashed border-2 border-bnexDarkBlue rounded-sm
-    shrink-0
-    flex flex-col
-    justify-center align-middle
-  ">
-      { 
-        showForm ? 
-        <>
-          <input type="text" name="name" placeholder="Insira o nome"/>
-          <input type="number" name="value" placeholder="Insira o valor"/>
-          <textarea name="description" placeholder="Insira a descrição"/>   
-          <input type="submit" value="enviar" />
-        </> :
-        <div onClick={() => setShowForm(true)}className="
-          text-bold font-poppins text-bnexDarkBlue text-6xl
-          self-center
-          cursor-pointer
-          hover:text-7xl
-        ">
-          +
-        </div> 
-      }
-    </form>
+  return <>{ 
+    showForm ?
+      <UpdateProduct action={sendFormData}/>
+    :
+      <li onClick={() => setShowForm(true)} className={`
+        text-6xl
+        border-dashed border-2 border-bnexBlue
+        ${productCardClasses}
+        justify-center align-middle
+        text-bold text-bnexBlue text-center
+        cursor-pointer
+        hover:text-7xl
+        bg-transparent
+      `}>
+        +
+      </li> 
+  }</>
 }
