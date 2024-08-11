@@ -22,7 +22,7 @@ export default function Main(){
     bg-bnexLight
     w-full h-auto
     p-8
-    overflow-scroll
+    overflow-y-scroll
   ">
     <h1 className="text-4xl font-poppins text-bnexBlue font-bold pb-8">
       Produtos

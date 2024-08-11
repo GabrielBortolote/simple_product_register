@@ -5,7 +5,7 @@ export const productCardClasses = `
   font-poppins
   flex flex-col
   border-4
-  mx-2 my-6
+  mx-2 my-4
 `;
 
 export default function UpdateProduct({action, data}){
@@ -14,11 +14,13 @@ export default function UpdateProduct({action, data}){
     text-bnexDarkBlue 
     p-2
     bg-bnexBlue
+    rounded-lg
   `}>
     {/* Description */}
     <textarea
       name="description"
       maxLength={500}
+      required
       placeholder="Insira a descrição"
       defaultValue={data ? data.description : ""}
       className="
@@ -33,6 +35,7 @@ export default function UpdateProduct({action, data}){
       type="text"
       name="name"
       maxLength={33}
+      required
       placeholder="Insira o nome"
       defaultValue={data ? data.name : ""}
       className="
@@ -53,6 +56,7 @@ export default function UpdateProduct({action, data}){
       <input
         type="number"
         step="0.01"
+        required
         name="value"
         placeholder="Insira o valor"
         defaultValue={data ? data.value : ""}
