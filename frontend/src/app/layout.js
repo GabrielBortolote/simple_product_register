@@ -1,4 +1,4 @@
-import { Poppins, Yellowtail } from 'next/font/google';
+import { Poppins, Yellowtail, Lato} from 'next/font/google';
 import "./globals.css";
 
 export const metadata = {
@@ -21,11 +21,19 @@ const yellowtail = Yellowtail({
 })
 
 
+const lato = Lato({
+  weight: '400',
+  subsets: ['latin'],
+  style: 'normal',
+  variable: '--font-lato',
+})
+
+
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} ${yellowtail.variable}`}>
+      <body className={`${poppins.variable} ${yellowtail.variable} ${lato.variable}`}>
         {children}
       </body>
     </html>

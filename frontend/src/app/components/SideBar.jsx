@@ -19,12 +19,13 @@ export default function SideBar(){
       text-lg font-poppins flex-grow">
       Meu nome é Gabriel Bortolote e este é o projeto que eu desenvolvi como parte do processo seletivo da BNEX.
     </p>
+    
     <Image
       src="/bnexLogo.png"
       width={500}
       height={179}
       alt="Bnex Logo"
-      className='w-2/3'
+      className='w-full'
     />
   </div>
 }
