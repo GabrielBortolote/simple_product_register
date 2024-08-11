@@ -1,6 +1,8 @@
+const ApiURL = "http://localhost:8000";
+
 export async function fetchProducts(){
   try {
-    const response = await fetch('http://localhost:8000/product/');
+    const response = await fetch(`${ApiURL}/product/`);
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -15,7 +17,7 @@ export async function fetchProducts(){
 
 export async function createProduct(product){
   try {
-    const response = await fetch('http://localhost:8000/product/', {
+    const response = await fetch(`${ApiURL}/product/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -36,7 +38,7 @@ export async function createProduct(product){
 
 export async function updateProduct(productId, productUpdatedData){
   try {
-    const response = await fetch(`http://localhost:8000/product/${productId}/`, {
+    const response = await fetch(`${ApiURL}/product/${productId}/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +59,7 @@ export async function updateProduct(productId, productUpdatedData){
 
 export async function deleteProduct(productId){
   try {
-    const response = await fetch(`http://localhost:8000/product/${productId}/`, {
+    const response = await fetch(`${ApiURL}/product/${productId}/`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

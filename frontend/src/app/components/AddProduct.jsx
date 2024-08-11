@@ -26,13 +26,13 @@ export default function AddProduct({setNeedUpdate}){
       <UpdateProduct action={sendFormData}/>
     :
       <li onClick={() => setShowForm(true)} className={`
-        text-6xl
+        rounded-xl
+        text-7xl hover:text-8xl
         border-dashed border-2 border-bnexBlue
         ${productCardClasses}
         justify-center align-middle
         text-bold text-bnexBlue text-center
         cursor-pointer
-        hover:text-7xl
         bg-transparent
       `}>
         +

@@ -6,8 +6,6 @@ import UpdateProduct, {productCardClasses} from "./UpdateProduct";
 
 const descriptionMaxSize = 140;
 
-
-
 export default function Product({key, data, setNeedUpdate}){
   const [editing, setEditing] = useState(false);
 
@@ -41,15 +39,20 @@ export default function Product({key, data, setNeedUpdate}){
     <UpdateProduct action={sendFormData} data={data} /> :
     <li className={`
       ${productCardClasses}
-      text-white text-sm 
-      border-bnexBlue
-     hover:border-bnexDarkBlue
-    `}>
+      group
+      text-white text-sm
+      bg-none
+      `}>
+
       {/* description */}
       <p className={`
+        z-20
+        shadow-inner
+        p-2
         flex-grow
         text-[14px]
-        my-2
+        bg-bnexBlue
+        rounded-t-md
         ${
           data.description.length > descriptionMaxSize ?
           "overflow-y-scroll pr-2" : ""
@@ -61,21 +64,30 @@ export default function Product({key, data, setNeedUpdate}){
       {/* name */}
       <p className="
         text-lg font-bold
+        px-2 pt-2
+        bg-[#1d0055]
       ">
         {data.name}
       </p>
 
       {/* value */}
-      <p className="text-lg">
+      <p className="
+        text-lg
+        px-2 pb-2
+        bg-[#1d0055]
+        rounded-b-md
+      ">
         <span className="mr-1">R$</span>{data.value}
       </p>
       
       {/* action buttons */}
       <div className="
-        text-bnexDarkBlue
+        z-10
+      text-bnexBlue text-md
         absolute
         top-0 right-0
-        -translate-y-full
+        transition-transform
+        group-hover:-translate-y-full
       ">
         <button onClick={toogleEditing} className="mr-1 hover:font-bold">Editar</button>|
         <button onClick={sendDelete} className="ml-1 hover:font-bold">Deletar</button>

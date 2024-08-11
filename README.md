@@ -63,7 +63,10 @@ Afim de garantir a qualidade e integridade da estrutura do back-end eu criei os 
 
 ### Arquitetura Front-End
 
-Para o front-end eu escolhi usar **ReactJS** sendo servido com o **NextJS**.
+Para o front-end eu escolhi usar **ReactJS** sendo servido com o **NextJS**. O NextJS é um framework poderoso que traz muitas funcionalidades e facilidades para o React. A documentação do Next é bem completa e pode ser encontrada nesse link [https://nextjs.org/](https://nextjs.org/). A criação do front-end pode ser divida em duas etapas:
+
+1. **Fetch**: nessa etapa implementei algumas funções para se comunicar com a API Django previamente criada. Todas essas funções podem ser encontradas no arquivo *frontend/src/app/adapters/APIAdapter.js*, são elas: *fetchProducts*, *createProduct*, *updateProduct*, *deleteProduct*. Os nomes são auto-descritivos, cada uma dessas funções retorna uma **promise**, pois são assíncronas, ao chamar uma dessas funções é necessário definir um callback de execução.
+2. **Interface**: nessa etapa eu desenhei a aparência do sistema, fiz um sketch na ferramenta **Canva** para entender e visualizar como eu gostaria que o sistema se parecesse. Usei fontes e cores originais do site da **BNEX**. Depois bastou criar os componentes, eles podem ser encontrados dentro da pasta *frontend/src/app/components*. Para estilizar os componentes usei **Tailwind**, uma maneira simples de se estilizar usando classes pré-definidas ao invés de criar as próprias classes CSS.
 
 ### Infraestrutura
 

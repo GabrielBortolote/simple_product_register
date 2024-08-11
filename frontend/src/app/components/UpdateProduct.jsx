@@ -2,12 +2,9 @@ export const productCardClasses = `
   relative
   w-[200px] h-[250px]
   shrink-0
-  bg-bnexBlue
   font-poppins
-  rounded-sm
   flex flex-col
-  p-2
-  border-2
+  border-4
   mx-2 my-6
 `;
 
@@ -15,8 +12,8 @@ export default function UpdateProduct({action, data}){
   return <form action={action} className={`
     ${productCardClasses}
     text-bnexDarkBlue 
-    border-bnexDarkBlue 
-    cursor-pointer
+    p-2
+    bg-bnexBlue
   `}>
     {/* Description */}
     <textarea
@@ -78,7 +75,7 @@ export default function UpdateProduct({action, data}){
       className="
         absolute top-0 right-0
         -translate-y-full
-        text-bnexDarkBlue
+        text-bnexBlue
         hover:font-bold
         cursor-pointer
       "

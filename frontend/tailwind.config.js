@@ -13,7 +13,7 @@ module.exports = {
       },
       colors: {
         bnexGreen: '#49dd6d',
-        bnexBlue: '#4f00e8',
+        bnexBlue: '#2b007f',
         bnexDarkBlue: '#04123a',
         bnexLight: '#dee5ef',
       }
