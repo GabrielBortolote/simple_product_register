@@ -8,16 +8,22 @@ from base.serializers import ProductSerializer
 class TestProductCRUD(TestCase):
   def setUp(self):
     self.client = APIClient()
-    self.p1 = Product.objects.create(name='Product 1', value=1.0, description='any')
-    self.p2 = Product.objects.create(name='Product 2', value=2.0, description='any')
-    self.p3 = Product.objects.create(name='Product 2', value=3.0, description='any')
+    self.p1 = Product.objects.create(name='Product 1', value=1.0, description='description 1')
+    self.p2 = Product.objects.create(name='Product 2', value=2.0, description='description 2')
+    self.p3 = Product.objects.create(name='Product 3', value=3.0, description='description 3')
 
   def test_product_list(self):
     response = self.client.get(reverse('product-list'))
-    products = Product.objects.all()
-    serializer = ProductSerializer(products, many=True)
-    self.assertEqual(response.data, serializer.data)
     self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    # assert count
+    products = Product.objects.all()
+    self.assertEqual(products.count(), 3)
+    self.assertEqual(len(response.data), 3)
+
+    # assert last product data
+    product_1_data = ProductSerializer(self.p3)
+    self.assertEqual(product_1_data.data, response.data[0])
 
   def test_product_retrieve(self):
     response = self.client.get(

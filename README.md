@@ -95,7 +95,7 @@ Todos os serviços serão levantados e estarão rodando através do docker. Uma 
 Também é possível executar os testes do serviço back-end, para isso abra um terminal e execute o seguinte comando:
 
 ```bash
-docker exec app python manage.py test
+docker exec api python manage.py test
 ```
 
 Esse comando vai executar o comando de teste dentro do container docker responsável pelo back-end. O seguinte output deve ser exibido:
