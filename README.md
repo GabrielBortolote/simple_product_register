@@ -88,8 +88,8 @@ docker compose up --build
 
 Todos os serviços serão levantados e estarão rodando através do docker. Uma vez estando todos os serviços rodando é possível acessar as aplicações:
 
-1. Front-End: para acessar a aplicação front-end abra o seu navegador e acesse o link [localhost:3000](localhost:3000).
-2. Back-End: para acessar a aplicação back-end você pode usar o navegador, acessando o link [localhost:8000](localhost:8000), o DRF oferece uma interface HTML e é possível navegar pelos endpoints através dela. Ou você pode usar algum programa que faça requests, como postman, curl e etc.
+1. Front-End: para acessar a aplicação front-end abra o seu navegador e acesse o link [localhost:3000](http://localhost:3000).
+2. Back-End: para acessar a aplicação back-end você pode usar o navegador, acessando o link [localhost:8000](http://localhost:8000), o DRF oferece uma interface HTML e é possível navegar pelos endpoints através dela. Ou você pode usar algum programa que faça requests, como postman, curl e etc.
 3. Banco de dados: o banco de dados é um serviço que toda na porta 5432 (padrão do Postgres), para acessar esse serviço é necessário ter um postgres client instaldado na máquina, isso é, alguma aplicação que consiga se comunicar com o serviço Postgres, como o dbeaver ou o psql. As credenciais para acessar o banco estão dentro do arquivo *.env*.
 
 Também é possível executar os testes do serviço back-end, para isso abra um terminal e execute o seguinte comando:
