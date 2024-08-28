@@ -3,7 +3,7 @@ import Image from 'next/image'
 export default function SideBar(){
   return <div className="
     hidden
-    md:flex flex-col
+    flex-col
     w-1/4 h-full
     bg-gradient-to-t from-bnexBlue via-bnexGreen to-bnexGreen
     p-8

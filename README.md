@@ -1,104 +1,104 @@
 # Simple Product Register
 
-Olá recrutadores e equipe, é um prazer conhecê-los e fazer parte deste processo seletivo. Meu nome é Gabriel Bortolote, todos me chamam carinhosamente de Borto. Este arquivo contém os detalhes do desenvolvimento do teste técnico, assim como instruções para executar o código em qualquer ambiente que tenha o Docker instalado.
+Simple product register system using stack: DRF (Django Rest Framework), React and Docker.
 
-## Requisitos
+## Requirements
 
-### Parte 1 | Arquitetura Back-End
+### Part 1 | Back-End Architecture
 
-- Crie um sistema Back-End, que mantém os dados de uma Entidade “Produto”. Essa entidade possui os atributos:
-  - nome
-  - descrição
-  - valor
-- Esse Back-End deve prover toda a manutenção dessa Entidade “Produto“:
-  - incluir
-  - remover
-  - alterar
-- Deve ser usada a stack Python+Django, com uma das opções abaixo:
-  - Opção 1: Django Rest Framework para criação do backend de APIs **<--Opção escolhida**
-  - Opção 2: Django utilizando Templates.
-- Usar preferencialmente CBV para desenvolvimento das views.
+- Create a Back-End system that maintains the data of a "Product" Entity. This entity has the following attributes:
+  - name
+  - description
+  - value
+- This Back-End must provide full maintenance of this "Product" Entity:
+  - add
+  - remove
+  - update
+- The Python+Django stack should be used, with one of the following options:
+  - Option 1: Django Rest Framework to create the API backend **<--Option chosen**
+  - Option 2: Django using Templates.
+- Preferably use CBV for view development.
 
-### Parte 2 | Arquitetura Front-End
+### Part 2 | Front-End Architecture
 
-- Crie um sistema Front-End, que apresente os dados de sua Entidade “Produto”, da Parte 1.
-- Esse Front-End deve prover toda a interface gráfica para manutenção da Entidade “Produto”, como  incluir Produto, Remover Produto etc.
-- Deve ser usado uma das seguintes opções de stack para a construção deste Front-End:
-  - Opção 1: ReactJS **<--Opção escolhida**
-  - Opção 2: Caso não tenha conhecimento em ReactJS pode ser utilizado Django (Templates).
+- Create a Front-End system that presents the data of your "Product" Entity from Part 1.
+- This Front-End should provide the entire graphical interface for maintaining the "Product" Entity, such as adding Product, removing Product, etc.
+- One of the following stack options should be used to build this Front-End:
+  - Option 1: ReactJS **<--Option chosen**
+  - Option 2: If you are not familiar with ReactJS, Django (Templates) can be used.
 
-### Parte 3 | Infraestrutura
+### Part 3 | Infrastructure
 
-- Crie uma infraestrutura para esses sistemas, com as ferramentas **Docker** e **Docker Compose**.
-- Nessa infraestrutura deverão existir 3 servidores:
+- Create an infrastructure for these systems using **Docker** and **Docker Compose**.
+- This infrastructure should consist of 3 servers:
   1. Front-End Server
   2. Back-End Server
   3. DB Server.
-- No servidor Back-End-Server deve ser instalado o sistema da Parte 1.
-- No servidor Front-End-Server deve ser instalado o sistema da Parte 2.
-- No servidor DB-Server deve ser instalado o banco de dados dos sistemas.
-- O Banco de Dados deve ser **PostgreSQL**.
-- Crie um README.md com instruções para instalação e inicialização dos sistemas em modo  desenvolvimento, ou seja, na máquina local.
+- The Back-End Server should have the system from Part 1 installed.
+- The Front-End Server should have the system from Part 2 installed.
+- The DB Server should have the database for the systems installed.
+- The Database should be **PostgreSQL**.
+- Create a README.md with instructions for installing and starting the systems in development mode, i.e., on the local machine.
 
-## Solução
+## Solution
 
-### Arquitetura Back-End
+### Back-End Architecture
 
-O Back-end foi implementado usando a linguagem Python e o DRF (Django Rest Framework). Usei uma estrutura simples contendo duas pastas.
+The Back-end was implemented using the Python language and DRF (Django Rest Framework). I used a simple structure containing two folders.
 
-1. A pasta **base** funcionará como um aplicativo Django nativo, contendo os arquivos que relacionam lógica e persistência: *models.py, views.py e serializers.py*;
-2. A pasta **api** conterá configurações da API usando o DRF, assim como os testes relacionados a API.
+1. The **base** folder functions as a native Django app, containing the files that relate logic and persistence: *models.py, views.py, and serializers.py*;
+2. The **api** folder contains API configurations using DRF, as well as tests related to the API.
 
-Dentro do app **base** eu defini o modelo *Product* contendo os atributos necessários: *name, value e description*. No arquivo *serializer.py* defini um serializer padrão usando uma classe pré-definida do DRF (a ModelSerializer). E por fim, dentro do arquivo *views.py* defini uma CBV (Class-Based View), também usando uma classe pré-definida do DRF (a ModelViewSet). Essa combinação apesar de simples é muito poderosa, basta apenas configurar as URL's para que o CRUD do modelo Product já esteja funcionando.
+Within the **base** app, I defined the *Product* model containing the necessary attributes: *name, value, and description*. In the *serializer.py* file, I defined a standard serializer using a predefined DRF class (ModelSerializer). Finally, within the *views.py* file, I defined a CBV (Class-Based View), also using a predefined DRF class (ModelViewSet). This combination, although simple, is very powerful; you only need to configure the URLs for the Product model CRUD to be up and running.
 
-Configurei as URL's do CRUD no endpoint */product/*, logo temos:
+I configured the CRUD URLs at the */product/* endpoint, so we have:
 
-- **GET** /product/ -> lista todos os produtos
-- **GET** /product/id/ -> retorna apenas o produto identificado
-- **POST** /product/ -> cria um produto
-- **PUT** /product/id/ -> atualiza os dados do produto identificado
-- **DELETE** /product/id/ -> deleta o produto identificado.
+- **GET** /product/ -> lists all products
+- **GET** /product/id/ -> returns only the identified product
+- **POST** /product/ -> creates a product
+- **PUT** /product/id/ -> updates the data of the identified product
+- **DELETE** /product/id/ -> deletes the identified product.
 
-Afim de garantir a qualidade e integridade da estrutura do back-end eu criei os testes unitários para cada endpoint do CRUD. Os testes podem ser encontrados dentro do arquivo *api/tests/test_product_crud.py*.
+To ensure the quality and integrity of the back-end structure, I created unit tests for each CRUD endpoint. The tests can be found in the *api/tests/test_product_crud.py* file.
 
-### Arquitetura Front-End
+### Front-End Architecture
 
-Para o front-end eu escolhi usar **ReactJS** sendo servido com o **NextJS**. O NextJS é um framework poderoso que traz muitas funcionalidades e facilidades para o React. A documentação do Next é bem completa e pode ser encontrada nesse link [https://nextjs.org/](https://nextjs.org/). A criação do front-end pode ser divida em duas etapas:
+For the front-end, I chose to use **ReactJS** served with **NextJS**. NextJS is a powerful framework that brings many functionalities and conveniences to React. The NextJS documentation is very comprehensive and can be found at this link [https://nextjs.org/](https://nextjs.org/). The creation of the front-end can be divided into two stages:
 
-1. **Fetch**: nessa etapa implementei algumas funções para se comunicar com a API Django previamente criada. Todas essas funções podem ser encontradas no arquivo *frontend/src/app/adapters/APIAdapter.js*, são elas: *fetchProducts*, *createProduct*, *updateProduct*, *deleteProduct*. Os nomes são auto-descritivos, cada uma dessas funções retorna uma **promise**, pois são assíncronas, ao chamar uma dessas funções é necessário definir um callback de execução.
-2. **Interface**: nessa etapa eu desenhei a aparência do sistema, fiz um sketch na ferramenta **Canva** para entender e visualizar como eu gostaria que o sistema se parecesse. Usei fontes e cores originais do site da **BNEX**. Depois bastou criar os componentes, eles podem ser encontrados dentro da pasta *frontend/src/app/components*. Para estilizar os componentes usei **Tailwind**, uma maneira simples de se estilizar usando classes pré-definidas ao invés de criar as próprias classes CSS.
+1. **Fetch**: in this stage, I implemented some functions to communicate with the previously created Django API. All these functions can be found in the *frontend/src/app/adapters/APIAdapter.js* file, and they are: *fetchProducts*, *createProduct*, *updateProduct*, *deleteProduct*. The names are self-explanatory; each of these functions returns a **promise** since they are asynchronous, so when calling one of these functions, it is necessary to define an execution callback.
+2. **Interface**: in this stage, I designed the system's appearance, sketched on **Canva** to understand and visualize how I wanted the system to look. I used original fonts and colors from the **BNEX** website. Then, I just created the components, which can be found in the *frontend/src/app/components* folder. To style the components, I used **Tailwind**, a simple way to style using predefined classes instead of creating your own CSS classes.
 
-### Infraestrutura
+### Infrastructure
 
-A infraestrutura da aplicação foi feita usando 3 docker containers, como sugerido, eis aqui os seus nomes e funções:
+The application’s infrastructure was created using 3 Docker containers, as suggested, here are their names and functions:
 
-- **db**: o container de persistência da aplicação. Ele executa um serviço *postgresql* e esta conectado com o sistema backend;
-- **api**: o servidor back-end, contendo a aplicação **Django** implementando a API que se comunicará com a aplicação;
-- **app**: o servidor front-end, contendo uma aplicação **NextJs** implementando a aplicação que será acessada pelo usuário.
+- **db**: the application’s persistence container. It runs a *postgresql* service and is connected to the backend system;
+- **api**: the back-end server, containing the **Django** application implementing the API that will communicate with the application;
+- **app**: the front-end server, containing a **NextJs** application implementing the application that will be accessed by the user.
 
-## Como rodar?
+## How to run?
 
-Para rodar essa aplicação basta possuir o **docker** instalado no ambiente. Da mesma forma o módulo **compose** deve estar instalado no docker, para que seja possível executar o comando **docker compose**.
+To run this application, just have **docker** installed in the environment. Likewise, the **compose** module must be installed in Docker to be able to run the **docker compose** command.
 
-Para executar a aplicação basta abrir um terminal na pasta raiz do projeto e executar:
+To run the application, open a terminal in the project's root folder and run:
 
 ```bash
 docker compose up --build
 ```
 
-Todos os serviços serão levantados e estarão rodando através do docker. Uma vez estando todos os serviços rodando é possível acessar as aplicações:
+All services will be started and will be running through Docker. Once all services are running, it is possible to access the applications:
 
-1. Front-End: para acessar a aplicação front-end abra o seu navegador e acesse o link [localhost:3000](http://localhost:3000).
-2. Back-End: para acessar a aplicação back-end você pode usar o navegador, acessando o link [localhost:8000](http://localhost:8000), o DRF oferece uma interface HTML e é possível navegar pelos endpoints através dela. Ou você pode usar algum programa que faça requests, como postman, curl e etc.
-3. Banco de dados: o banco de dados é um serviço que toda na porta 5432 (padrão do Postgres), para acessar esse serviço é necessário ter um postgres client instaldado na máquina, isso é, alguma aplicação que consiga se comunicar com o serviço Postgres, como o dbeaver ou o psql. As credenciais para acessar o banco estão dentro do arquivo *.env*.
+1. Front-End: to access the front-end application, open your browser and go to the link localhost:3000.
+2. Back-End: to access the back-end application, you can use the browser by going to the link localhost:8000; DRF offers an HTML interface, and you can navigate the endpoints through it. Or you can use a program that makes requests, like Postman, curl, etc.
+3. Database: the database is a service running on port 5432 (Postgres default); to access this service, you need to have a Postgres client installed on your machine, such as DBeaver or psql. The credentials to access the database are in the *.env* file.
 
-Também é possível executar os testes do serviço back-end, para isso abra um terminal e execute o seguinte comando:
+It is also possible to run the back-end service tests; to do so, open a terminal and run the following command:
 
 ```bash
 docker exec api python manage.py test
 ```
 
-Esse comando vai executar o comando de teste dentro do container docker responsável pelo back-end. O seguinte output deve ser exibido:
+This command will run the test command inside the Docker container responsible for the back-end. The following output should be displayed:
 
 ```bash
 Creating test database for alias 'default'...
